@@ -6,9 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-string connectionString = builder.Configuration.GetConnectionString("Postgres");
+string connectionString = builder.Configuration.GetConnectionString("Mysql");
 builder.Services.AddTransient<RepositoryDepartamentos>();
-builder.Services.AddDbContext<DepartamentosContext>(options => options.UseNpgsql(connectionString));
+builder.Services.AddDbContext<DepartamentosContext>(options => options.UseMySql(connectionString,ServerVersion.AutoDetect(connectionString)));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
